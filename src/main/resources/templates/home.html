@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>게시판</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 </head>
 <body>
-    <h1>자유 게시판</h1>
+    <div class="container">
+        <h1>자유 게시판</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>글 번호</th>
+                <th>제목</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="posts : ${posts}">
+                <td th:text="${posts.id}"></td>
+                <td th:text="${posts.title}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

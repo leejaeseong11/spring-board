@@ -8,14 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 @Controller
 public class PostController {
-    @Autowired
     private PostService postService;
+
+    @Autowired
+    public PostController(PostService postService) {
+        this.postService = postService;
+    }
 
     @GetMapping("/")
     public String home(Model model) {
@@ -35,7 +36,13 @@ public class PostController {
     }
 
     @PostMapping("/posts/new")
-    public String createPost(Model model) {
+    public String createPost(PostForm form) {
+        Post post = new Post();
 
+        post.setTitle(form.getTitle());
+        post.setContent(form.getContent());
+        postService.savePost(post);
+
+        return "redirect:/";
     }
 }
