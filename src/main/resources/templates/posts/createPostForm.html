@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/main.css}">
 </head>
 <body>
     <div class="container">
@@ -15,16 +15,18 @@
                         id="title"
                         name="title"
                         placeholder="제목을 입력하세요"
+                        onkeydown="return event.keyCode != 13;"
                 />
                 <label for="content">내용</label>
-                <input
-                        type="textarea"
+                <textarea
                         id="content"
                         name="content"
-                        placeholder="내용을 입력하세요"
-                />
+                        placeholder="내용을 입력하세요"></textarea>
             </div>
-            <button type="submit">등록</button>
+            <button
+                    onClick="if (document.getElementById('title').value == '') { alert('제목을 입력하세요.'); return false; }"
+                    class=button style="background-color: #15883e" type="submit">등록</button>
+            <a class="button" style="background-color: #dc3545; margin-right: 8px;" href="/">취소</a>
         </form>
     </div>
 </body>

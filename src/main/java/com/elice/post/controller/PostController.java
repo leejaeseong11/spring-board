@@ -5,9 +5,7 @@ import com.elice.post.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PostController {
@@ -43,6 +41,30 @@ public class PostController {
         post.setContent(form.getContent());
         postService.savePost(post);
 
+        return "redirect:/";
+    }
+
+    @GetMapping("/posts/edit/{id}")
+    public String editPost(@PathVariable Long id, Model model) {
+        model.addAttribute("post", postService.getPostById(id));
+        return "posts/editPostForm";
+    }
+    @PutMapping("/posts/edit/{id}")
+    public String editPost(@PathVariable Long id, PostForm form, Model model) {
+        Post post = postService.getPostById(id);
+
+        post.setTitle(form.getTitle());
+        post.setContent(form.getContent());
+        postService.savePost(post);
+
+        model.addAttribute("post", postService.getPostById(id));
+        return "redirect:/posts/{id}";
+    }
+
+    @DeleteMapping("/posts/{id}")
+    public String deletePost(@PathVariable Long id) {
+        Post post = postService.getPostById(id);
+        postService.deletePost(post);
         return "redirect:/";
     }
 }

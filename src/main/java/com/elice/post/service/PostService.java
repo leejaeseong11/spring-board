@@ -26,7 +26,7 @@ public class PostService {
     }
 
     public Long savePost(Post post) {
-        post.setCreatedDate((new Date()));
+        post.setUpdatedDate((new Date()));
         postRepository.save(post);
         return post.getId();
     }

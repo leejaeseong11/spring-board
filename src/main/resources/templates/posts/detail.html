@@ -3,13 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/main.css}">
 </head>
 <body>
     <div class="container">
-        <h1 th:text="{posts.title}"></h1>
-        <p th:text="{posts.createdDate}"></p>
-        <p th:text="{posts.content}"></p>
+        <form th:action="@{/posts/{id}(id = ${post.id})}" method="post">
+            <div>
+                <h1 th:text="${post.title}"></h1>
+                <p th:text="${#dates.format(post.updatedDate, 'yyyy-MM-dd HH:mm:ss')}" style="float: right"></p>
+            </div>
+            <pre th:text="${post.content}"></pre>
+            <div>
+                <input type="hidden" name="_method" value="delete" />
+                <button
+                        onclick="if (confirm('정말로 삭제하시겠습니까?') == false) return false;;"
+                        class="button" type="submit" style="background: #dc3545">삭제</button>
+                <a class="button" style="background: #007bff; margin-right: 8px;" th:href="@{/posts/edit/{id}(id = ${post.id})}">수정</a>
+                <a class="button" style="background-color: #9147ff; margin-right: 8px;" href="/">돌아가기</a>
+            </div>
+        </form>
     </div>
 </body>
 </html>
+

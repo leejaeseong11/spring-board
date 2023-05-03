@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/main.css}">
 </head>
 <body>
     <div class="container">
-        <h1>자유 게시판</h1>
+        <div>
+            <h1 style="text-align: center">자유 게시판</h1>
+            <a class="button" style="background-color: #9147ff" href="/posts/new">글 작성</a>
+        </div>
         <table>
             <thead>
             <tr>
@@ -16,10 +19,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="posts : ${posts}">
-                <td th:text="${posts.id}"></td>
-                <td th:text="${posts.title}"></td>
-            </tr>
+                <tr th:each="posts : ${posts}" style="text-align: center">
+                    <td th:text="${posts.id}"></td>
+                    <td><a th:text="${posts.title}" th:href="@{/posts/{id}(id = ${posts.id})}"></a></td>
+                </tr>
             </tbody>
         </table>
     </div>

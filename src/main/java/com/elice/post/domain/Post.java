@@ -13,7 +13,7 @@ public class Post {
     private String title;
     private String content;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    private Date updatedDate;
 
     public Long getId() {
         return id;
@@ -39,11 +39,11 @@ public class Post {
         this.content = content;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public Date getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setUpdatedDate(Date updatedDate) {
+        this.updatedDate = updatedDate;
     }
 }

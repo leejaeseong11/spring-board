@@ -1,4 +1,5 @@
 -- mysql -u root
+-- CREATE DATABASE board_test;
 CREATE DATABASE board;
 USE board;
 
@@ -6,10 +7,10 @@ CREATE TABLE post (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    createdDate DATETIME NOT NULL
+    updated_date DATETIME NOT NULL
 );
 
-INSERT INTO post (title, content, createdDate)
+INSERT INTO post (title, content, updated_date)
 VALUES
     ('Spring Boot로 게시판 만들기', 'Spring Boot와 MySQL, Thymeleaf를 활용하여 게시판 만드는 방법을 알아보자.', '2023-04-27 13:45:00'),
     ('JPA란 무엇인가?', 'JPA가 무엇인지, 그리고 왜 JPA를 사용해야 하는지 알아보자.', '2023-04-26 10:30:00'),
